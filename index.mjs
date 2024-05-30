@@ -1,44 +1,32 @@
 // Importing database functions. DO NOT MODIFY THIS LINE.
-import { central, db1, db2, db3, vault } from "./databases.js";
+import { central, db1, db2, db3, vault } from "./databases.mjs";
+  
+async function getUserData(id) {
+  
+  const dbs = {
+    db1: db1,
+    db2: db2,
+    db3: db3
+  };
 
-async function getUserInfo(id) {
-  try {
+// try {
 
-    const dbName = await central(id);
+  const dbName = await central(id);
+  console.log(dbName);
 
-    const userData1 = await db1(id);
-    const userData2 = await db2(id);
-    const userData3 = await db3(id);
+  const dbInfo = await dbs[dbName](id);
+  console.log(dbInfo);
 
-    const personalData = await vault(id);
+  // const returnedValue = await vault(id);
 
-    const userObject = {
-      id, // or is it id: id?
-      name: personalData.name,
-      username: userData.username,
-      email: personalData.email,
-      address: {
-        street: personalData.address.street,
-        suite: personalData.address.suite,
-        city: personalData.address.city,
-        zipcode: personalData.address.zipcode,
-        geo: {
-          lat: personalData.address.geo.lat,
-          lng: personalData.address.geo.lng,
-        },
-      },
-      phone: personalData.phone,
-      website: userData.website,
-      company: {
-        name: userData.company.name,
-        catchPhrase: userData.company.catchPhrase,
-        bs: userData.company.bs,
-      },
-    };
+  // const personalData = await vault(id);
 
-    return userObject;
-  } catch (error) {
-
-    throw new Error(`Can not get information: ${error.message}`);
-  }
+  return 0;
 }
+//  catch (error) {
+
+//     throw new Error(`Can not get information: ${error.message}`);
+//   }
+// }
+
+getUserData(1);
