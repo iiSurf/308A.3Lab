@@ -9,24 +9,20 @@ async function getUserData(id) {
     db3: db3
   };
 
-// try {
+  try {
 
-  const dbName = await central(id);
-  console.log(dbName);
+    const dbName = await central(id);
+    console.log(dbName);
 
-  const dbInfo = await dbs[dbName](id);
-  console.log(dbInfo);
+    const dbInfo = await dbs[dbName](id);
+    console.log(dbInfo);
 
-  // const returnedValue = await vault(id);
-
-  // const personalData = await vault(id);
-
-  return 0;
+    const returnedValue = await vault(id);
+    console.log(returnedValue);
+    
+  } catch (error) {
+      console.error(error);
+  }
 }
-//  catch (error) {
-
-//     throw new Error(`Can not get information: ${error.message}`);
-//   }
-// }
 
 getUserData(1);
